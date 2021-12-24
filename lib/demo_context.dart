@@ -22,7 +22,7 @@ class _DemoContextState extends State<DemoContext> {
 
 class OngBa extends StatefulWidget {
 
-  String text = "hello";
+  String text = "OngBa";
 
   @override
   _OngBaState createState() => _OngBaState();
@@ -31,22 +31,20 @@ class OngBa extends StatefulWidget {
 class _OngBaState extends State<OngBa> {
   @override
   Widget build(BuildContext context) {
-    return Chame(widget.text);
+    return Chame();
   }
 }
 
 class Chame extends StatelessWidget {
 
-  late String text;
-
-  Chame(this.text);
+  String text = "Chame";
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ConTrai(text),
-        ConGai(text)
+        ConTrai(),
+        ConGai()
       ],
     );
   }
@@ -54,23 +52,16 @@ class Chame extends StatelessWidget {
 
 class ConTrai extends StatelessWidget {
 
-  late String text;
-
-  ConTrai(this.text);
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text(text),
+      child: Text(),
     );
   }
 }
 
 class ConGai extends StatefulWidget {
 
-  late String text;
-
-  ConGai(this.text);
 
   @override
   _ConGaiState createState() => _ConGaiState();
@@ -80,7 +71,7 @@ class _ConGaiState extends State<ConGai> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text(widget.text),
+      child: Text(),
     );
   }
 }
