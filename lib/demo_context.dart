@@ -22,13 +22,25 @@ class _DemoContextState extends State<DemoContext> {
 
 class OngBa extends StatefulWidget {
 
-  String text = "OngBa";
+  // String text = "OngBa";
+  //
+  // static OngBa getData(BuildContext context){
+  //   return context.findAncestorWidgetOfExactType()!!;
+  // }
+
+  static _OngBaState getData(BuildContext context){
+    return context.findAncestorStateOfType()!!;
+  }
+
 
   @override
   _OngBaState createState() => _OngBaState();
 }
 
 class _OngBaState extends State<OngBa> {
+
+  String text = "abc";
+
   @override
   Widget build(BuildContext context) {
     return Chame();
@@ -38,6 +50,10 @@ class _OngBaState extends State<OngBa> {
 class Chame extends StatelessWidget {
 
   String text = "Chame";
+
+  static Chame getData(BuildContext context){
+    return context.findAncestorWidgetOfExactType()!!;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,8 +70,9 @@ class ConTrai extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _OngBaState ongBa = OngBa.getData(context);
     return Container(
-      child: Text(),
+      child: Text(ongBa.text),
     );
   }
 }
@@ -70,8 +87,9 @@ class ConGai extends StatefulWidget {
 class _ConGaiState extends State<ConGai> {
   @override
   Widget build(BuildContext context) {
+    Chame chame = Chame.getData(context);
     return Container(
-      child: Text(),
+      child: Text(chame.text),
     );
   }
 }
