@@ -24,12 +24,26 @@ class OngBa extends StatefulWidget {
 }
 
 class _OngBaState extends State<OngBa> {
+
+  String text = "abc";
+
+  void setText(String text){
+    setState(() {
+      this.text = text;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    Map<String,dynamic> data = {"string" : text , "function" : setText};
     return Container(
       child: Column(
         children: [
-          Text("Text Ong ba")
+          Text(text),
+          MyInheritedWidget(
+              data: data,
+              child: Concai()
+          )
         ],
       ),
     );
@@ -38,9 +52,11 @@ class _OngBaState extends State<OngBa> {
 
 class MyInheritedWidget extends InheritedWidget{
 
+  Map<String,dynamic> data;
+
   Widget child;
 
-  MyInheritedWidget({required this.child}) : super(child: child);
+  MyInheritedWidget({required this.child,required this.data}) : super(child: child);
 
   @override
   bool updateShouldNotify(covariant InheritedWidget oldWidget) {
@@ -48,4 +64,20 @@ class MyInheritedWidget extends InheritedWidget{
   }
 
 }
+
+class Concai extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: ElevatedButton(
+        onPressed: (){
+
+        },
+        child: Text("Change text"),
+      ),
+    );
+  }
+}
+
 
