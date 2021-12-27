@@ -28,7 +28,7 @@ class OngBa extends StatefulWidget {
   //   return context.findAncestorWidgetOfExactType()!!;
   // }
 
-  static _OngBaState getData(BuildContext context){
+  static _OngBaState of(BuildContext context){
     return context.findAncestorStateOfType()!!;
   }
 
@@ -51,7 +51,7 @@ class Chame extends StatelessWidget {
 
   String text = "Chame";
 
-  static Chame getData(BuildContext context){
+  static Chame of(BuildContext context){
     return context.findAncestorWidgetOfExactType()!!;
   }
 
@@ -70,7 +70,7 @@ class ConTrai extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _OngBaState ongBa = OngBa.getData(context);
+    _OngBaState ongBa = OngBa.of(context);
     return Container(
       child: Text(ongBa.text),
     );
@@ -87,7 +87,7 @@ class ConGai extends StatefulWidget {
 class _ConGaiState extends State<ConGai> {
   @override
   Widget build(BuildContext context) {
-    Chame chame = Chame.getData(context);
+    Chame chame = Chame.of(context);
     return Container(
       child: Text(chame.text),
     );
