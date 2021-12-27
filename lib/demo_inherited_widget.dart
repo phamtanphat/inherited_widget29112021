@@ -75,8 +75,8 @@ class MyInheritedWidget extends InheritedWidget{
   }
 
   @override
-  bool updateShouldNotify(covariant InheritedWidget oldWidget) {
-    return true;
+  bool updateShouldNotify(covariant MyInheritedWidget oldWidget) {
+    return oldWidget.data["string"] != data["string"];
   }
 
 }
