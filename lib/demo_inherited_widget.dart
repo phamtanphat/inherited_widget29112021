@@ -12,12 +12,20 @@ class _DemoInheritedWidgetState extends State<DemoInheritedWidget> {
       appBar: AppBar(
         title: Text("Demo Inherited widget"),
       ),
-      body: OngBa(),
+      body: OngBa(
+        child: Concai(
+          child : Chac()
+        ),
+      ),
     );
   }
 }
 
 class OngBa extends StatefulWidget {
+
+  Widget child;
+
+  OngBa({required this.child});
 
   @override
   _OngBaState createState() => _OngBaState();
@@ -35,16 +43,20 @@ class _OngBaState extends State<OngBa> {
 
   @override
   Widget build(BuildContext context) {
+    print("Ong ba build");
     Map<String,dynamic> data = {"string" : text , "function" : setText};
     return Container(
-      child: Column(
-        children: [
-          Text(text),
-          MyInheritedWidget(
-              data: data,
-              child: Concai()
-          )
-        ],
+      constraints: BoxConstraints.expand(),
+      child: Center(
+        child: Column(
+          children: [
+            Text(text),
+            MyInheritedWidget(
+                data: data,
+                child: widget.child
+            )
+          ],
+        ),
       ),
     );
   }
@@ -58,26 +70,54 @@ class MyInheritedWidget extends InheritedWidget{
 
   MyInheritedWidget({required this.child,required this.data}) : super(child: child);
 
+  static MyInheritedWidget of(BuildContext context){
+    return context.dependOnInheritedWidgetOfExactType<MyInheritedWidget>()!;
+  }
+
   @override
   bool updateShouldNotify(covariant InheritedWidget oldWidget) {
-    throw UnimplementedError();
+    return true;
   }
 
 }
 
 class Concai extends StatelessWidget {
 
+  Widget child;
+
+  Concai({required this.child});
+
   @override
   Widget build(BuildContext context) {
+    print("Con cai build");
+    MyInheritedWidget inheritedWidget = MyInheritedWidget.of(context);
     return Container(
-      child: ElevatedButton(
-        onPressed: (){
-
-        },
-        child: Text("Change text"),
+      child: Column(
+        children: [
+          ElevatedButton(
+            onPressed: (){
+              inheritedWidget.data["function"]("Hello");
+            },
+            child: Text("Change text"),
+          ),
+          child
+        ],
       ),
     );
   }
 }
+
+class Chac extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    print("Chac build");
+    MyInheritedWidget inheritedWidget = MyInheritedWidget.of(context);
+    return Container(
+      child: Text(inheritedWidget.data["string"]),
+    );
+  }
+}
+
 
 

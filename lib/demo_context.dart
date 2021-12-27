@@ -29,7 +29,7 @@ class OngBa extends StatefulWidget {
   // }
 
   static _OngBaState of(BuildContext context){
-    return context.findAncestorStateOfType()!!;
+    return context.findAncestorStateOfType()!;
   }
 
 
@@ -52,7 +52,7 @@ class Chame extends StatelessWidget {
   String text = "Chame";
 
   static Chame of(BuildContext context){
-    return context.findAncestorWidgetOfExactType()!!;
+    return context.findAncestorWidgetOfExactType()!;
   }
 
   @override
